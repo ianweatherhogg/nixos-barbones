@@ -25,7 +25,7 @@
       preLVM = true;
     }];
   };
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-intel" "tun" "fuse" "virtio" ];
   boot.extraModulePackages = [ ];
   boot.kernelPackages = pkgs.linuxPackages // {
     virtualbox = pkgs.linuxPackages.virtualbox.override { enableExtensionPack = true; };
