@@ -6,7 +6,7 @@
 {
   imports =
     [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
-    <nixos/modules/programs/virtualbox.nix>
+    # <nixos/modules/programs/virtualbox.nix>
     ];
 
   boot.initrd = {
@@ -27,9 +27,9 @@
   };
   boot.kernelModules = [ "kvm-intel" "tun" "fuse" "virtio" ];
   boot.extraModulePackages = [ ];
-  boot.kernelPackages = pkgs.linuxPackages // {
-    virtualbox = pkgs.linuxPackages.virtualbox.override { enableExtensionPack = true; };
-  };
+  # boot.kernelPackages = pkgs.linuxPackages // {
+  #   virtualbox = pkgs.linuxPackages.virtualbox.override { enableExtensionPack = true; };
+  # };
 
 #  boot.kernelPackages = pkgs.linuxPackages_3_14;
 #  boot.kernelPackages = pkgs.linuxPackages_3_15;
