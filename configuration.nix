@@ -32,15 +32,16 @@
 
   environment.systemPackages = with pkgs; [
     wget
-    gitAndTools.gitFull
+    # gitAndTools.gitFull
+    git
 
-    (chromium.override {
-       enablePepperFlash = true;
-    })
+    # (chromium.override {
+    #    enablePepperFlash = true;
+    # })
     htop
     i3
     rxvt_unicode
-    rust
+    # rust
     emacs
     python
     virtmanager
@@ -52,8 +53,7 @@
     # vagrant
     # docker
     dmenu
-    keychain
-    firefox
+    # firefox
     rsync
     unison
     i3status
@@ -61,20 +61,20 @@
     aspellDicts.en
     aspellDicts.de
     xlibs.xmodmap
-    thunderbird
+    # thunderbird
     gnupg
-    scala
-    jdk
+    # scala
+    # jdk
     tcpdump
     pinentry
-    vlc
-    youtubeDL
+    # vlc
+    # youtubeDL
     sqlite
     silver-searcher
     pass
     lsof
     unzip
-    evince
+    # evince
     rlwrap
     nix-repl
     nixops
@@ -88,14 +88,16 @@
       corefonts  # Micrsoft free fonts
       inconsolata  # monospaced
       ubuntu_font_family  # Ubuntu fonts
-      dejavu_fonts
-      vistafonts
-      ttf_bitstream_vera
-      liberation_ttf
-      dejavu_fonts
-      terminus_font
+      # dejavu_fonts
+      # vistafonts
+      # ttf_bitstream_vera
+      # liberation_ttf
+      # dejavu_fonts
+      # terminus_font
     ];
   };
+
+  nix.package = pkgs.nixUnstable;
 
   sound.enableOSSEmulation = false;
   hardware.pulseaudio.enable = true;
@@ -105,10 +107,10 @@
     rxvt_unicode = {
       perlBindings = true;
     };
-    firefox = {
-      enableAdobeFlash = true;
-      jre = false;
-    };
+    # firefox = {
+    #   enableAdobeFlash = true;
+    #   jre = false;
+    # };
   };
 
   services.xserver = {
@@ -124,7 +126,6 @@
     displayManager.sessionCommands = ''
        xmodmap -e 'pointer = 3 2 1 5 4 7 6 8 9 10 11 12'
        urxvtd -q -o -f
-       eval $(keychain --eval --quiet)
     '';
     desktopManager = {
       xterm.enable = false;
@@ -139,23 +140,24 @@
     };
   };
 
-  environment.variables = {
-    NIX_PATH = pkgs.lib.mkOverride 0 [
-      "nixpkgs=/home/ian/.nix-defexpr/channels/nixpkgs"
-      "nixos=/home/ian/.nix-defexpr/channels/nixpkgs/nixos"
-      "nixos-config=/etc/nixos/configuration.nix"
-    ];
-  };
+  # environment.variables = {
+  #   NIX_PATH = pkgs.lib.mkOverride 0 [
+  #     "nixpkgs=/home/ian/.nix-defexpr/channels/nixpkgs"
+  #     "nixos=/home/ian/.nix-defexpr/channels/nixpkgs/nixos"
+  #     "nixos-config=/etc/nixos/configuration.nix"
+  #   ];
+  # };
 
   services.cron.enable = false;
 
   virtualisation.libvirtd.enable = true;
- 
+
   programs.zsh.enable = true;
   programs.ssh.startAgent = false;
   programs.bash.enableCompletion = true;
   security.sudo.enable = true;
 
+  users.defaultUserShell = "/run/current-system/sw/bin/zsh";
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.ian = {
     name = "ian";
@@ -164,7 +166,7 @@
     createHome = true;
 #    createUser = true; # 16Oct14 apparantly no longer supported
     home = "/home/ian";
-    shell = "${pkgs.zsh}/bin/zsh";
+    useDefaultShell = true;
     description = "Ian Weatherhogg";
     password = "ian";
     extraGroups = [
