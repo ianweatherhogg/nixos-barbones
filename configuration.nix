@@ -73,6 +73,7 @@
     silver-searcher
     pass
     lsof
+    gptfdisk
     unzip
     # evince
     rlwrap
