@@ -37,7 +37,7 @@
 
   fileSystems."/" =
     { device = "/dev/mapper/vg-root";
-      fsType = "ext2";
+      fsType = "ext4";
     };
 
   fileSystems."/boot" =
