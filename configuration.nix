@@ -52,6 +52,7 @@
     xsel
     # vagrant
     # docker
+    # lxc
     dmenu
     # firefox
     rsync
@@ -152,6 +153,8 @@
   services.cron.enable = false;
 
   virtualisation.libvirtd.enable = true;
+  virtualisation.docker.enable = true;
+  virtualisation.lxc.enable = true;
 
   programs.zsh.enable = true;
   programs.ssh.startAgent = false;
@@ -175,6 +178,7 @@
       "vboxusers"
       "libvirtd"
       "audio"
+      "docker"
     ];
   };
 
