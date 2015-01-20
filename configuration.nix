@@ -179,6 +179,8 @@
       "libvirtd"
       "audio"
       "docker"
+      "cdrom"
+      "kvm"
     ];
   };
 
